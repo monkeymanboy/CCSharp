@@ -398,7 +398,7 @@ public class CSharpCompiler
                 }
 
 
-                if (target.DataType == DataValueType.Array || target.DataType == DataValueType.Dictionary)
+                if (target.DataType == DataValueType.Array || target.DataType == DataValueType.Dictionary || target.DataType == DataValueType.Unknown)
                 {
                     target = new TableKeyAccessNode(target, argVisited, type);
                 }
