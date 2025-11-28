@@ -258,7 +258,7 @@ class CompilationInstance
                     break;
                 case DataValueType.Integer:
                 case DataValueType.Float:
-                    state.Write(node.Value.ToString());
+                    state.Write(node.Value.ToString().Replace(',', '.'));
                     break;
                 case DataValueType.String:
                     WriteString(state, node.Value.ToString());
