@@ -28,13 +28,14 @@ public class LuaProgram
     public string Filename { get; set; }
     public HashSet<LuaRequireModuleAttribute> Modules = new();
     public string CompiledCode { get; set; }
-    public List<string> MainMethods = new();
+    public List<(string,bool)> MainMethods = new();
     
     public LuaCompileFlags Flags { get; set; }
 
     public string FullCode => string.Join("\n",
-        Modules.Select(module => $"local {module.Variable} = require(\"{module.Module}\")").Union(new[] { CompiledCode })
-            .Union(MainMethods.Select(main => $"{main}()")));
+        Modules.Select(module => $"local {module.Variable} = require(\"{module.Module}\")")
+            .Append(CompiledCode)
+            .Union(MainMethods.Select(((method) => method.Item2 ? $"{method.Item1}({{...}})" : $"{method.Item1}()"))));
 
     public static LuaProgram FromType(Type type)
     {
@@ -56,7 +57,7 @@ public class LuaProgram
         foreach (MethodInfo methodInfo in type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance))
         {
             if(methodInfo.GetCustomAttribute<LuaMainAttribute>() != null)
-                program.MainMethods.Add(methodInfo.Name);
+                program.MainMethods.Add((methodInfo.Name, methodInfo.GetParameters().Length == 1));
         }
         program.CompiledCode = program.CompiledCode.Trim('\n');
         return program;
