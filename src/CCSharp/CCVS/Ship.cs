@@ -46,9 +46,9 @@ public class Ship
     /// <summary>
     /// Converts the Ship to and from a static object
     /// </summary>
-    /// <param name="static">Whether the Ship should be static</returns>
+    /// <param name="s">Whether the Ship should be static</returns>
     [LuaMethod("ship.setStatic")]
-    public static void SetStatic(bool static) { }
+    public static void SetStatic(bool s) { }
 
     /// <summary>
     /// Gets all Constraints affecting the Ship
