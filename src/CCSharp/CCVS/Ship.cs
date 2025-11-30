@@ -1,6 +1,7 @@
 using CCSharp.Attributes;
 using CCSharp.ComputerCraft;
 using CCSharp.AdvancedMath;
+using System.Collections.Generic;
 
 namespace CCSharp.CCVS;
 /// <summary>
@@ -13,7 +14,7 @@ public class Ship
     /// </summary>
     /// <returns>The Ship's unique ID</returns>
     [LuaMethod("ship.getId")]
-    public static Long GetId() => default;
+    public static long GetId() => default;
 
     /// <summary>
     /// Gets the Ship's unique Slug
@@ -55,7 +56,7 @@ public class Ship
     /// </summary>
     /// <returns>A dictionary of all Constraints and their respective IDs</returns>
     [LuaMethod("ship.getConstraints")]
-    public static Dictionary<Long, Constraint> GetConstraints() => default;
+    public static Dictionary<long, Constraint> GetConstraints() => default;
 
     /// <summary>
     /// Gets the Ship's Center of Mass in the Shipyard
@@ -145,7 +146,7 @@ public class Ship
     /// <summary>
     /// Contains the output data from "physics_ticks" regarding the individual tick
     /// </summary>
-    class PhysicsTick
+    public class PhysicsTick
     {
         /// <summary>
         /// Gets the buoyant factor during this physics tick
@@ -192,7 +193,7 @@ public class Ship
         /// <summary>
         /// The inertia data provided by the physics tick
         /// </summary>
-        class Inertia
+        public class Inertia
         {
             [LuaProperty("momentOfInertiaTensor")] public Matrix MomentOfInertiaTensor { get; set; }
             [LuaProperty("mass")] public double Mass { get; set; }
@@ -201,7 +202,7 @@ public class Ship
         /// <summary>
         /// The pose vel data provided by the physics tick
         /// </summary>
-        class PoseVel
+        public class PoseVel
         {
             [LuaProperty("vel")] public Vector3 LinearVelocity { get; set; }
             [LuaProperty("omega")] public Vector3 AngularVelocity { get; set; }
@@ -320,7 +321,7 @@ public class Ship
     /// The base constraint data class
     /// </summary>
     [LuaTableTypeCheck(TableAccessor = "type")]
-    class Constraint
+    public class Constraint
     {
         [LuaEnum(typeof(ConstraintType))]
         public enum ConstraintType
@@ -339,8 +340,8 @@ public class Ship
             [LuaEnumValue("spherical_twist_limits")] SphericalTwistLimits
         }
 
-        [LuaProperty("shipId0")] public Long FirstShipID { get; set; }
-        [LuaProperty("shipId1")] public Long SecondShipID { get; set; }
+        [LuaProperty("shipId0")] public long FirstShipID { get; set; }
+        [LuaProperty("shipId1")] public long SecondShipID { get; set; }
         [LuaProperty("type")] public ConstraintType Type { get; set; }
         [LuaProperty("compliance")] public double Compliance { get; set; }
     }
@@ -349,7 +350,7 @@ public class Ship
     /// The attachment constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("attachment")]
-    class AttachmentConstraint : Constraint
+    public class AttachmentConstraint : Constraint
     {
         [LuaProperty("localPos0")] public Vector3 FirstPosition { get; set; }
         [LuaProperty("localPos1")] public Vector3 SecondPosition { get; set; }
@@ -362,7 +363,7 @@ public class Ship
     /// The hinge swing limits constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("hinge_swing_limits")]
-    class HingeSwingLimitsConstraint : Constraint
+    public class HingeSwingLimitsConstraint : Constraint
     {
         [LuaProperty("localRot0")] public Quaternion FirstPosition { get; set; }
         [LuaProperty("localRot1")] public Quaternion SecondPosition { get; set; }
@@ -376,7 +377,7 @@ public class Ship
     /// The hinge target angle constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("thinge_target_angle")]
-    class HingeTargetAngleConstraint : Constraint
+    public class HingeTargetAngleConstraint : Constraint
     {
         [LuaProperty("localRot0")] public Quaternion FirstPosition { get; set; }
         [LuaProperty("localRot1")] public Quaternion SecondPosition { get; set; }
@@ -390,7 +391,7 @@ public class Ship
     /// The position damping constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("pos_damping")]
-    class PosDampingConstraint : Constraint
+    public class PosDampingConstraint : Constraint
     {
         [LuaProperty("localPos0")] public Vector3 FirstPosition { get; set; }
         [LuaProperty("localPos1")] public Vector3 SecondPosition { get; set; }
@@ -402,7 +403,7 @@ public class Ship
     /// The rope constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("rope")]
-    class RopeConstraint : Constraint
+    public class RopeConstraint : Constraint
     {
         [LuaProperty("localPos0")] public Vector3 FirstPosition { get; set; }
         [LuaProperty("localPos1")] public Vector3 SecondPosition { get; set; }
@@ -415,7 +416,7 @@ public class Ship
     /// The rotation damping constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("rot_damping")]
-    class RotDampingConstraint : Constraint
+    public class RotDampingConstraint : Constraint
     {
         [LuaEnum(typeof(RotDampingAxes))]
         public enum RotDampingAxes
@@ -436,7 +437,7 @@ public class Ship
     /// The slide constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("slide")]
-    class SlideConstraint : Constraint
+    public class SlideConstraint : Constraint
     {
         [LuaProperty("localPos0")] public Vector3 FirstPosition { get; set; }
         [LuaProperty("localPos1")] public Vector3 SecondPosition { get; set; }
@@ -449,7 +450,7 @@ public class Ship
     /// The spherical swing limits constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("spherical_swing_limits")]
-    class SphericalSwingLimitsConstraint : Constraint
+    public class SphericalSwingLimitsConstraint : Constraint
     {
         [LuaProperty("localRot0")] public Quaternion FirstPosition { get; set; }
         [LuaProperty("localRot1")] public Quaternion SecondPosition { get; set; }
@@ -462,7 +463,7 @@ public class Ship
     /// The spherical twist limits constraint data class
     /// </summary>
     [LuaImplicitTypeArgument("spherical_twist_limits")]
-    class SphericalTwistLimitsConstraint : Constraint
+    public class SphericalTwistLimitsConstraint : Constraint
     {
         [LuaProperty("localRot0")] public Quaternion FirstPosition { get; set; }
         [LuaProperty("localRot1")] public Quaternion SecondPosition { get; set; }
