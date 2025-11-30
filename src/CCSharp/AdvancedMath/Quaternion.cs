@@ -28,7 +28,7 @@ public class Quaternion
     /// <param name="axis">The rotation axis that will be used for the Quaternion. The axis does not need to be normalized.</param>
     /// <param name="angle">The angle to rotate by, in radians.</param>
     [LuaMethod("quaternion.fromAxisAngle")]
-    public static Quaternion FromAxisAngle(Vector3 axis, double angle) { }
+    public static Quaternion FromAxisAngle(Vector3 axis, double angle) => default;
 
     /// <summary>
     /// Constructs a new quaternion using the provided pitch, yaw and roll. Uses the YXZ reference frame

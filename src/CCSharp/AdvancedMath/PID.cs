@@ -66,7 +66,7 @@ public abstract class PID<T, Y>
     /// Disables the clamps on the control output
     /// </summary>
     [LuaMethod("clampOutput")]
-    public void ClampOutput() => default;
+    public void ClampOutput() { }
 
     /// <summary>
     /// Assigns the limits on the Integral
