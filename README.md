@@ -34,6 +34,8 @@ Start()
 
 
 ## TODO
+- Properly handle local variable names that share names with lua apis or lua keywords by automatically renaming them to something safe.
+- Add support for all Math functions
 - Update to newer version of ICSharpCode.Decompiler
 - Fix string concatenation (this will happen with the ICSharpCode.Decompiler update)
 - Compile get and set accessors for non auto implemented properties (need to decide if I want to use \_\_index and \_\_newindex to mimic how it works in C# or just generate regular get_* and set_* methods)
