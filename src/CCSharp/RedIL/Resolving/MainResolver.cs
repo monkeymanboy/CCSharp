@@ -674,7 +674,8 @@ public class MainResolver
         AddPack(ValueTupleResolverPack.GetMapToProxy());
         AddPack(LinqResolverPack.GetMapToProxy());
         AddPack(ObjectResolverPack.GetMapToProxy());
-            
+        AddPack(MathResolverPack.GetMapToProxy());
+        
         #endregion
     }
 }

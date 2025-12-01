@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Compression;
+using CCSharp.Attributes;
 using CCSharp.Enums;
 using CCSharp.RedIL.Resolving.Attributes;
 using CCSharp.RedIL.Resolving.CommonResolvers;
@@ -46,6 +47,13 @@ class MathResolverPack
 
         [RedILResolve(typeof(CallLuaBuiltinStaticMethodResolver), LuaBuiltinMethod.MathMin)]
         public static long Min(long a, long b) => default;
+            
+        #endregion
+            
+        #region Pow
+            
+        [LuaMethod("math.pow")]
+        public static double Pow(double a, double b) => default;
             
         #endregion
     }
