@@ -74,7 +74,7 @@ public class Matrix
     /// </summary>
     /// <param name="rows">The number of rows in the matrix.</param>
     /// <param name="columns">The number of columns in the matrix.</param>
-    [LuaMethod("matrix.identity")]
+    [LuaConstructor("matrix.identity")]
     public Matrix(int rows, int columns) { }
 
     /// <summary>
